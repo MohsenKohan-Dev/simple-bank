@@ -6,8 +6,13 @@ public class BankClient {
 
     private int current = -1;
     private boolean done = false;
-    private Scanner scanner = new Scanner(System.in);
-    private Bank bank = new Bank();
+    private Scanner scanner;
+    private Bank bank;
+
+    public BankClient(Scanner scanner, Bank bank) {
+        this.scanner = scanner;
+        this.bank = bank;
+    }
 
     public void run() {
         while (!done) {
