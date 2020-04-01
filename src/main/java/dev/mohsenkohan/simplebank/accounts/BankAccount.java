@@ -1,4 +1,4 @@
-package dev.mohsenkohan.simplebank;
+package dev.mohsenkohan.simplebank.accounts;
 
 public interface BankAccount extends Comparable<BankAccount> {
 

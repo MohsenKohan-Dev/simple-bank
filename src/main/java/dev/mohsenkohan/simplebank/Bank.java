@@ -1,5 +1,9 @@
 package dev.mohsenkohan.simplebank;
 
+import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.accounts.CheckingAccount;
+import dev.mohsenkohan.simplebank.accounts.SavingsAccount;
+
 import java.util.Map;
 
 public class Bank {
