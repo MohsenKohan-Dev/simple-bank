@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank;
 
-public interface BankAccount {
+public interface BankAccount extends Comparable<BankAccount> {
 
     int getAcctNum();
 

@@ -51,4 +51,9 @@ public class SavingsAccount implements BankAccount {
         return "Savings Account " + acctNum + ": balance=" + balance
                 + ", is " + (isForeign ? "foreign" : "domestic");
     }
+
+    @Override
+    public int compareTo(BankAccount bankAccount) {
+        return getBalance() - bankAccount.getBalance();
+    }
 }
