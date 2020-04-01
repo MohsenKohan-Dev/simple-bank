@@ -12,9 +12,15 @@ public class Bank {
         this.nextAcct = nextAcct;
     }
 
-    public int newAccount(boolean isForeign) {
+    public int newAccount(int type, boolean isForeign) {
         int acctNum = nextAcct++;
-        BankAccount bankAccount = new BankAccount(acctNum);
+        BankAccount bankAccount;
+
+        if (type == 1)
+            bankAccount = new SavingsAccount(acctNum);
+        else
+            bankAccount = new CheckingAccount(acctNum);
+
         bankAccount.setForeign(isForeign);
         accounts.put(acctNum, bankAccount);
         return acctNum;
@@ -42,7 +48,10 @@ public class Bank {
 
     public void addInterest() {
         for (BankAccount bankAccount : accounts.values()) {
-            bankAccount.addInterest();
+            if (bankAccount instanceof SavingsAccount) {
+                SavingsAccount savingsAccount = (SavingsAccount) bankAccount;
+                savingsAccount.addInterest();
+            }
         }
     }
 
