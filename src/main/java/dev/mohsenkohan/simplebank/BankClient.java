@@ -25,7 +25,7 @@ public class BankClient {
     }
 
     private void processCommand(int cmdNum) {
-        if      (cmdNum == 0) quit();
+        if (cmdNum == 0) quit();
         else if (cmdNum == 1) newAccount();
         else if (cmdNum == 2) select();
         else if (cmdNum == 3) deposit();

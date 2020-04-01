@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Bank {
 
-    private HashMap<Integer,BankAccount> accounts;
+    private HashMap<Integer, BankAccount> accounts;
     private int nextAcct;
 
     public Bank(HashMap<Integer, BankAccount> accounts, int nextAcct) {
@@ -47,12 +47,8 @@ public class Bank {
     }
 
     public void addInterest() {
-        for (BankAccount bankAccount : accounts.values()) {
-            if (bankAccount instanceof SavingsAccount) {
-                SavingsAccount savingsAccount = (SavingsAccount) bankAccount;
-                savingsAccount.addInterest();
-            }
-        }
+        for (BankAccount bankAccount : accounts.values())
+            bankAccount.addInterest();
     }
 
     @Override
