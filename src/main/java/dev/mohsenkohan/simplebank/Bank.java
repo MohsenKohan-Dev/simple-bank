@@ -1,13 +1,13 @@
 package dev.mohsenkohan.simplebank;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Bank {
 
-    private HashMap<Integer, BankAccount> accounts;
+    private Map<Integer, BankAccount> accounts;
     private int nextAcct;
 
-    public Bank(HashMap<Integer, BankAccount> accounts, int nextAcct) {
+    public Bank(Map<Integer, BankAccount> accounts, int nextAcct) {
         this.accounts = accounts;
         this.nextAcct = nextAcct;
     }
