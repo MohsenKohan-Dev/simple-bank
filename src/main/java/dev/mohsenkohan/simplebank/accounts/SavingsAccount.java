@@ -2,25 +2,22 @@ package dev.mohsenkohan.simplebank.accounts;
 
 public class SavingsAccount extends AbstractBankAccount {
 
-    private double rate = 0.01;
-
     public SavingsAccount(int acctNum) {
         super(acctNum);
     }
 
     @Override
-    public boolean hasEnoughCollateral(int loanAmt) {
-        return balance >= loanAmt / 2;
+    protected double collateralRatio() {
+        return 1.0 / 2.0;
     }
 
     @Override
-    public void addInterest() {
-        balance += (int) (balance * rate);
+    protected double interestRate() {
+        return 0.01;
     }
 
     @Override
-    public String toString() {
-        return "Savings Account " + acctNum + ": balance=" + balance
-                + ", is " + (isForeign ? "foreign" : "domestic");
+    protected String accountType() {
+        return "Savings";
     }
 }

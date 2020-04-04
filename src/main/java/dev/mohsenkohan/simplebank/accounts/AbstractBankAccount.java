@@ -36,8 +36,26 @@ public abstract class AbstractBankAccount implements BankAccount {
     }
 
     @Override
+    public boolean hasEnoughCollateral(int loanAmt) {
+        double ratio = collateralRatio();
+        return balance >= loanAmt * ratio;
+    }
+
+    @Override
+    public void addInterest() {
+        balance += (int) (balance * interestRate());
+    }
+
+    @Override
     public int compareTo(BankAccount bankAccount) {
         return balance - bankAccount.getBalance();
+    }
+
+    @Override
+    public String toString() {
+        String type = accountType();
+        return type + " Account " + acctNum + ": balance=" + balance
+                + ", is " + (isForeign ? "foreign" : "domestic");
     }
 
     @Override
@@ -48,7 +66,7 @@ public abstract class AbstractBankAccount implements BankAccount {
         return acctNum == bankAccount.getAcctNum();
     }
 
-    public abstract boolean hasEnoughCollateral(int loanAmt);
-    public abstract void addInterest();
-    public abstract String toString();
+    protected abstract double collateralRatio();
+    protected abstract double interestRate();
+    protected abstract String accountType();
 }
