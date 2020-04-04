@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.accounts;
 
-public class CheckingAccount extends AbstractBankAccount {
+public abstract class CheckingAccount extends AbstractBankAccount {
 
     public CheckingAccount(int acctNum) {
         super(acctNum);
@@ -11,13 +11,6 @@ public class CheckingAccount extends AbstractBankAccount {
         return balance >= 2 * loanAmt / 3;
     }
 
-    @Override
-    public void addInterest() {
-    }
-
-    @Override
-    public String toString() {
-        return "Checking Account " + acctNum + ": balance=" + balance
-                + ", is " + (isForeign ? "foreign" : "domestic");
-    }
+    public abstract void addInterest();
+    public abstract String toString();
 }

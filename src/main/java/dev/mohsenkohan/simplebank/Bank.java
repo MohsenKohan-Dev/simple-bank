@@ -1,9 +1,6 @@
 package dev.mohsenkohan.simplebank;
 
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
-import dev.mohsenkohan.simplebank.accounts.CheckingAccount;
-import dev.mohsenkohan.simplebank.accounts.InterestChecking;
-import dev.mohsenkohan.simplebank.accounts.SavingsAccount;
+import dev.mohsenkohan.simplebank.accounts.*;
 
 import java.util.Map;
 
@@ -24,7 +21,7 @@ public class Bank {
         if (type == 1)
             bankAccount = new SavingsAccount(acctNum);
         else if (type == 2)
-            bankAccount = new CheckingAccount(acctNum);
+            bankAccount = new RegularChecking(acctNum);
         else
             bankAccount = new InterestChecking(acctNum);
 

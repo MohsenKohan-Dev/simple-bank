@@ -10,13 +10,12 @@ public class InterestChecking extends CheckingAccount {
 
     @Override
     public void addInterest() {
-        int newBalance = (int) (getBalance() * rate);
-        deposit(newBalance);
+        balance += (int) (balance * rate);
     }
 
     @Override
     public String toString() {
-        return "Interest Checking Account " + getAcctNum() + ": balance=" + getBalance()
-                + ", is " + (isForeign() ? "foreign" : "domestic");
+        return "Interest Checking Account " + acctNum + ": balance=" + balance
+                + ", is " + (isForeign ? "foreign" : "domestic");
     }
 }
