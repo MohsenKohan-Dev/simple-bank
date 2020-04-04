@@ -54,4 +54,12 @@ public class CheckingAccount implements BankAccount {
     public int compareTo(BankAccount bankAccount) {
         return getBalance() - bankAccount.getBalance();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (! (obj instanceof CheckingAccount))
+            return false;
+        CheckingAccount checkingAccount = (CheckingAccount) obj;
+        return getAcctNum() == checkingAccount.getAcctNum();
+    }
 }
