@@ -62,4 +62,8 @@ public class Bank {
             result += "\n\t" + bankAccount.toString();
         return result;
     }
+
+    public int nextAcctNum() {
+        return nextAcct;
+    }
 }
