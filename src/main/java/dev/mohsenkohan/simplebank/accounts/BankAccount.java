@@ -18,6 +18,8 @@ public interface BankAccount extends Comparable<BankAccount> {
 
     String toString();
 
+    int fee();
+
     static BankAccount createSavingsWithDeposit(int acctNum, int amt) {
         BankAccount bankAccount = new SavingsAccount(acctNum);
         bankAccount.deposit(amt);
