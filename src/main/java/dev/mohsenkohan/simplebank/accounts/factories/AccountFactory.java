@@ -1,34 +1,21 @@
 package dev.mohsenkohan.simplebank.accounts.factories;
 
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
-import dev.mohsenkohan.simplebank.accounts.InterestChecking;
-import dev.mohsenkohan.simplebank.accounts.RegularChecking;
-import dev.mohsenkohan.simplebank.accounts.SavingsAccount;
 
 public interface AccountFactory {
 
-    static SavingsAccount createSavings(int acctNum) {
-        return new SavingsAccount(acctNum);
-    }
-
-    static RegularChecking createRegularChecking(int acctNum) {
-        return new RegularChecking(acctNum);
-    }
-
-    static InterestChecking createInterestChecking(int acctNum) {
-        return new InterestChecking(acctNum);
-    }
+    BankAccount create(int acctNum);
 
     static BankAccount createAccount(int type, int acctNum) {
-        BankAccount account;
+        AccountFactory factory;
 
         if (type == 1)
-            account = createSavings(acctNum);
+            factory = new SavingsFactory();
         else if (type == 2)
-            account = createRegularChecking(acctNum);
+            factory = new RegularCheckingFactory();
         else
-            account = createInterestChecking(acctNum);
+            factory = new InterestCheckingFactory();
 
-        return account;
+        return factory.create(acctNum);
     }
 }
