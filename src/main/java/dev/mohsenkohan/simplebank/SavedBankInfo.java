@@ -1,6 +1,7 @@
 package dev.mohsenkohan.simplebank;
 
 import dev.mohsenkohan.simplebank.accounts.*;
+import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class SavedBankInfo {
 
     private String file;
-    private Map<Integer,BankAccount> accounts = new HashMap<>();
+    private Map<Integer, BankAccount> accounts = new HashMap<>();
     private int nextAcct = 0;
     private ByteBuffer buffer = ByteBuffer.allocate(16);
 
@@ -98,14 +99,8 @@ public class SavedBankInfo {
         int balance = buffer.getInt(8);
         int isForeign = buffer.getInt(12);
 
-        BankAccount account;
-
-        if (type == 1)
-            account = new SavingsAccount(acctNum);
-        else if (type == 2)
-            account = new RegularChecking(acctNum);
-        else
-            account = new InterestChecking(acctNum);
+        BankAccount account =
+                AccountFactory.createAccount(type, acctNum);
 
         account.deposit(balance);
         account.setForeign(isForeign == 1);

@@ -1,6 +1,7 @@
 package dev.mohsenkohan.simplebank;
 
-import dev.mohsenkohan.simplebank.accounts.*;
+import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
 import java.util.Map;
 
@@ -16,15 +17,8 @@ public class Bank {
 
     public int newAccount(int type, boolean isForeign) {
         int acctNum = nextAcct++;
-        BankAccount bankAccount;
-
-        if (type == 1)
-            bankAccount = new SavingsAccount(acctNum);
-        else if (type == 2)
-            bankAccount = new RegularChecking(acctNum);
-        else
-            bankAccount = new InterestChecking(acctNum);
-
+        BankAccount bankAccount =
+                AccountFactory.createAccount(type, acctNum);
         bankAccount.setForeign(isForeign);
         accounts.put(acctNum, bankAccount);
         return acctNum;
