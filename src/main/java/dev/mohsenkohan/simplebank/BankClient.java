@@ -10,16 +10,7 @@ public class BankClient {
     private boolean done = false;
     private Scanner scanner;
     private Bank bank;
-    private InputCommand[] commands = {
-            new QuitCmd(),
-            new NewCmd(),
-            new SelectCmd(),
-            new DepositCmd(),
-            new LoanCmd(),
-            new ShowCmd(),
-            new InterestCmd(),
-            new ForeignCmd()
-    };
+    private InputCommand[] commands = InputCommands.values();
 
     public BankClient(Scanner scanner, Bank bank) {
         this.scanner = scanner;
