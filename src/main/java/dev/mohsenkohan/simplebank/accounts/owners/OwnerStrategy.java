@@ -1,4 +1,4 @@
-package dev.mohsenkohan.simplebank.accounts.owner;
+package dev.mohsenkohan.simplebank.accounts.owners;
 
 public interface OwnerStrategy {
 

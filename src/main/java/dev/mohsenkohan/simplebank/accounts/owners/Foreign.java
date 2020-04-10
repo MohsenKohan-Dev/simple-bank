@@ -1,6 +1,8 @@
-package dev.mohsenkohan.simplebank.accounts.owner;
+package dev.mohsenkohan.simplebank.accounts.owners;
 
-public class Foreign implements OwnerStrategy {
+public enum Foreign implements OwnerStrategy {
+
+    INSTANCE;
 
     @Override
     public boolean isForeign() {
