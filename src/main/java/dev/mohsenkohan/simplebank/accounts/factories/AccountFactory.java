@@ -6,15 +6,10 @@ public interface AccountFactory {
 
     BankAccount create(int acctNum);
 
-    static BankAccount createAccount(int type, int acctNum) {
-        AccountFactory factory;
+    AccountFactory[] factories = AccountFactories.values();
 
-        if (type == 1)
-            factory = new SavingsFactory();
-        else if (type == 2)
-            factory = new RegularCheckingFactory();
-        else
-            factory = new InterestCheckingFactory();
+    static BankAccount createAccount(int type, int acctNum) {
+        AccountFactory factory = factories[type - 1];
 
         return factory.create(acctNum);
     }

@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.accounts;
 
-import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
+import dev.mohsenkohan.simplebank.accounts.factories.AccountFactories;
 
 public interface BankAccount extends Comparable<BankAccount> {
 
@@ -23,7 +23,7 @@ public interface BankAccount extends Comparable<BankAccount> {
     int fee();
 
     static BankAccount createSavingsWithDeposit(int acctNum, int amt) {
-        BankAccount bankAccount = AccountFactory.createSavings(acctNum);
+        BankAccount bankAccount = AccountFactories.SAVINGS.create(acctNum);
         bankAccount.deposit(amt);
         return bankAccount;
     }

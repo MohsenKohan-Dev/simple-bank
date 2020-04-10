@@ -1,6 +1,8 @@
 package dev.mohsenkohan.simplebank.commands;
 
 import dev.mohsenkohan.simplebank.Bank;
+import dev.mohsenkohan.simplebank.accounts.factories.AccountFactories;
+import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
 import java.util.Scanner;
 
@@ -13,7 +15,7 @@ public enum InputCommands implements InputCommand {
     }),
 
     NEW("new", (scanner, bank, current) -> {
-        System.out.print("Enter account type (1=savings, 2=regular checking, 3=interest checking): ");
+        printMessage();
         int type = scanner.nextInt();
 
         boolean isForeign = requestForeign(scanner);
@@ -73,6 +75,21 @@ public enum InputCommands implements InputCommand {
         System.out.print("Enter 1 for foreign, 2 for domestic: ");
         int val = scanner.nextInt();
         return val == 1;
+    }
+
+    private static void printMessage() {
+        System.out.print(message);
+    }
+
+    private static String message;
+
+    static {
+        AccountFactory[] factories = AccountFactories.values();
+
+        message = "Enter account type (";
+        for (int i = 0; i < factories.length - 1; i++)
+            message += (i + 1) + "=" + factories[i] + ", ";
+        message += factories.length + "=" + factories[factories.length - 1] + "): ";
     }
 
     private final String name;
