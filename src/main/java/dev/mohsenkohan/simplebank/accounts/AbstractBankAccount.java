@@ -1,14 +1,13 @@
 package dev.mohsenkohan.simplebank.accounts;
 
-import dev.mohsenkohan.simplebank.accounts.owners.Domestic;
-import dev.mohsenkohan.simplebank.accounts.owners.Foreign;
 import dev.mohsenkohan.simplebank.accounts.owners.OwnerStrategy;
+import dev.mohsenkohan.simplebank.accounts.owners.Owners;
 
 public abstract class AbstractBankAccount implements BankAccount {
 
     protected int acctNum;
     protected int balance = 0;
-    protected OwnerStrategy owner = Domestic.INSTANCE;
+    protected OwnerStrategy owner = Owners.DOMESTIC;
 
     public AbstractBankAccount(int acctNum) {
         this.acctNum = acctNum;
@@ -31,7 +30,7 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     @Override
     public void setForeign(boolean isForeign) {
-        owner = isForeign ? Foreign.INSTANCE : Domestic.INSTANCE;
+        owner = isForeign ? Owners.FOREIGN : Owners.DOMESTIC;
     }
 
     @Override
