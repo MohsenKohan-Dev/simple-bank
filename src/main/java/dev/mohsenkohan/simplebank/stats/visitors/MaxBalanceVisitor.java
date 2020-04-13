@@ -1,4 +1,4 @@
-package dev.mohsenkohan.simplebank.stats;
+package dev.mohsenkohan.simplebank.stats.visitors;
 
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
 

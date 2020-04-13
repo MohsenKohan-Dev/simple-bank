@@ -2,6 +2,8 @@ package dev.mohsenkohan.simplebank.stats;
 
 import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.stats.visitors.MaxBalanceVisitor;
+import dev.mohsenkohan.simplebank.stats.visitors.Visitor;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -142,5 +144,18 @@ public class AccountStats {
                 action.accept(account);
         });
         return action.result();
+    }
+
+    public void printAccounts6(Predicate<? super BankAccount> predicate) {
+        bank.stream()
+                .filter(predicate)
+                .forEach(System.out::println);
+    }
+
+    public int maxBalance6(Predicate<? super BankAccount> predicate) {
+        return bank.stream()
+                .filter(predicate)
+                .map(BankAccount::getBalance)
+                .reduce(0, Math::max);
     }
 }

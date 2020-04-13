@@ -3,6 +3,7 @@ package dev.mohsenkohan.simplebank.stats;
 import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.SavedBankInfo;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.stats.visitors.MaxBalanceVisitor;
 
 import java.io.File;
 import java.util.Map;
@@ -52,5 +53,10 @@ public class StatProgram {
         System.out.println("\nHere are the accounts:");
         stats.visit3(predicate, System.out::println);
         System.out.println("The max balance of all accounts is " + stats.visit4(predicate, new MaxBalanceVisitor()));
+
+        // internal iteration using stream
+        System.out.println("\nHere are the accounts:");
+        stats.printAccounts6(predicate);
+        System.out.println("The max balance of all accounts is " + stats.maxBalance6(predicate));
     }
 }
