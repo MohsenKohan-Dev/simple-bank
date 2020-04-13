@@ -4,6 +4,7 @@ import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class AccountStats {
 
@@ -47,5 +48,49 @@ public class AccountStats {
                 max = balance;
         }
         return max;
+    }
+
+    public void printAccounts3() {
+        Consumer<BankAccount> action = System.out::println;
+        bank.forEach(action);
+    }
+
+    public int maxBalance3a() {
+        Visitor<BankAccount, Integer> visitor = new MaxBalanceVisitor();
+        bank.forEach(visitor);
+        return visitor.result();
+    }
+
+    public int maxBalance3b() {
+        Visitor<BankAccount, Integer> visitor = new Visitor<>() {
+            private int max = 0;
+
+            @Override
+            public void accept(BankAccount account) {
+                int balance = account.getBalance();
+                if (balance > max)
+                    max = balance;
+            }
+
+            @Override
+            public Integer result() {
+                return max;
+            }
+        };
+        bank.forEach(visitor);
+        return visitor.result();
+    }
+
+    public void visit1(Consumer<? super BankAccount> action) {
+        bank.forEach(action);
+    }
+
+    public <R> R visit2(Visitor<? super BankAccount, R> visitor) {
+        bank.forEach(visitor);
+        return visitor.result();
+    }
+
+    public int maxBalance3c() {
+        return visit2(new MaxBalanceVisitor());
     }
 }

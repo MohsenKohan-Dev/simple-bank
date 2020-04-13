@@ -16,14 +16,23 @@ public class StatProgram {
         Bank bank = new Bank(accounts, nextAcct);
         AccountStats stats = new AccountStats(bank);
 
-        System.out.println("Here are the accounts:");
+        // external iteration
+        System.out.println("\nHere are the accounts:");
         stats.printAccounts1();
-        System.out.println("\nHere are the accounts again:");
-        stats.printAccounts2();
-
-        System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
-
         System.out.println("The max balance of all accounts is " + stats.maxBalance1());
+
+        System.out.println("\nHere are the accounts:");
+        stats.printAccounts2();
         System.out.println("The max balance of all accounts is " + stats.maxBalance2());
+
+        // internal iteration
+        System.out.println("\nHere are the accounts:");
+        stats.printAccounts3();
+        System.out.println("The max balance of all accounts is " + stats.maxBalance3a());
+        System.out.println("The max balance of all accounts is " + stats.maxBalance3b());
+
+        System.out.println("\nHere are the accounts:");
+        stats.visit1(System.out::println);
+        System.out.println("The max balance of all accounts is " + stats.maxBalance3c());
     }
 }
