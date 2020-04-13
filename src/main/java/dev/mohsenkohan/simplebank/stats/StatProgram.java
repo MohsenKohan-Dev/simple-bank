@@ -6,6 +6,7 @@ import dev.mohsenkohan.simplebank.accounts.BankAccount;
 
 import java.io.File;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class StatProgram {
 
@@ -34,5 +35,22 @@ public class StatProgram {
         System.out.println("\nHere are the accounts:");
         stats.visit1(System.out::println);
         System.out.println("The max balance of all accounts is " + stats.maxBalance3c());
+
+        // predicate
+        Predicate<BankAccount> predicate = account -> account.fee() == 0;
+
+        // external iteration with predicate
+        System.out.println("\nHere are the accounts:");
+        stats.printAccounts4(predicate);
+        System.out.println("The max balance of all accounts is " + stats.maxBalance4(predicate));
+
+        // internal iteration with predicate
+        System.out.println("\nHere are the accounts:");
+        stats.printAccounts5(predicate);
+        System.out.println("The max balance of all accounts is " + stats.maxBalance5(predicate));
+
+        System.out.println("\nHere are the accounts:");
+        stats.visit3(predicate, System.out::println);
+        System.out.println("The max balance of all accounts is " + stats.visit4(predicate, new MaxBalanceVisitor()));
     }
 }

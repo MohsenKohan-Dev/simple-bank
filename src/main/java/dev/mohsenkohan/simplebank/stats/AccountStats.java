@@ -5,6 +5,7 @@ import dev.mohsenkohan.simplebank.accounts.BankAccount;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class AccountStats {
 
@@ -92,5 +93,54 @@ public class AccountStats {
 
     public int maxBalance3c() {
         return visit2(new MaxBalanceVisitor());
+    }
+
+    public void printAccounts4(Predicate<? super BankAccount> predicate) {
+        for (BankAccount ba : bank)
+            if (predicate.test(ba))
+                System.out.println(ba);
+    }
+
+    public int maxBalance4(Predicate<? super BankAccount> predicate) {
+        int max = 0;
+        for (BankAccount ba : bank) {
+            if (predicate.test(ba)) {
+                int balance = ba.getBalance();
+                if (balance > max)
+                    max = balance;
+            }
+        }
+        return max;
+    }
+
+    public void printAccounts5(Predicate<? super BankAccount> predicate) {
+        bank.forEach(account -> {
+            if (predicate.test(account))
+                System.out.println(account);
+        });
+    }
+
+    public int maxBalance5(Predicate<? super BankAccount> predicate) {
+        Visitor<BankAccount, Integer> visitor = new MaxBalanceVisitor();
+        bank.forEach(account -> {
+            if (predicate.test(account))
+                visitor.accept(account);
+        });
+        return visitor.result();
+    }
+
+    public void visit3(Predicate<? super BankAccount> predicate, Consumer<? super BankAccount> action) {
+        bank.forEach(account -> {
+            if (predicate.test(account))
+                action.accept(account);
+        });
+    }
+
+    public <R> R visit4(Predicate<? super BankAccount> predicate, Visitor<? super BankAccount, R> action) {
+        bank.forEach(account -> {
+            if (predicate.test(account))
+                action.accept(account);
+        });
+        return action.result();
     }
 }
