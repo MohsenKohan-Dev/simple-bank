@@ -3,9 +3,10 @@ package dev.mohsenkohan.simplebank;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
+import java.util.Iterator;
 import java.util.Map;
 
-public class Bank {
+public class Bank implements Iterable<BankAccount> {
 
     private Map<Integer, BankAccount> accounts;
     private int nextAcct;
@@ -59,5 +60,10 @@ public class Bank {
 
     public int nextAcctNum() {
         return nextAcct;
+    }
+
+    @Override
+    public Iterator<BankAccount> iterator() {
+        return accounts.values().iterator();
     }
 }
