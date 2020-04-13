@@ -5,6 +5,7 @@ import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Bank implements Iterable<BankAccount> {
 
@@ -65,5 +66,9 @@ public class Bank implements Iterable<BankAccount> {
     @Override
     public Iterator<BankAccount> iterator() {
         return accounts.values().iterator();
+    }
+
+    public Stream<BankAccount> stream() {
+        return accounts.values().stream();
     }
 }
