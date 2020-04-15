@@ -2,7 +2,10 @@ package dev.mohsenkohan.simplebank;
 
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
+import dev.mohsenkohan.simplebank.loans.Loan;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -70,5 +73,9 @@ public class Bank implements Iterable<BankAccount> {
 
     public Stream<BankAccount> stream() {
         return accounts.values().stream();
+    }
+
+    public Collection<Loan> loans() {
+        return new ArrayList<>();
     }
 }
