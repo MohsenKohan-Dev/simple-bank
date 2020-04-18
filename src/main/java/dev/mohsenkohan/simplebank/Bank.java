@@ -1,6 +1,7 @@
 package dev.mohsenkohan.simplebank;
 
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.accounts.decorators.UnmodifiableBankIterator;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 import dev.mohsenkohan.simplebank.loans.Loan;
 
@@ -68,7 +69,8 @@ public class Bank implements Iterable<BankAccount> {
 
     @Override
     public Iterator<BankAccount> iterator() {
-        return accounts.values().iterator();
+        Iterator<BankAccount> iterator = accounts.values().iterator();
+        return new UnmodifiableBankIterator(iterator);
     }
 
     public Stream<BankAccount> stream() {
