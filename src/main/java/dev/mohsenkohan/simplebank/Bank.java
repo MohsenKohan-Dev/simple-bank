@@ -1,6 +1,7 @@
 package dev.mohsenkohan.simplebank;
 
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.accounts.decorators.SuspiciousBankAccount;
 import dev.mohsenkohan.simplebank.accounts.decorators.UnmodifiableBankIterator;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 import dev.mohsenkohan.simplebank.loans.Loan;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 
 public class Bank implements Iterable<BankAccount> {
 
-    private Map<Integer, BankAccount> accounts;
+    private final Map<Integer, BankAccount> accounts;
     private int nextAcct;
 
     public Bank(Map<Integer, BankAccount> accounts, int nextAcct) {
@@ -79,5 +80,10 @@ public class Bank implements Iterable<BankAccount> {
 
     public Collection<Loan> loans() {
         return new ArrayList<>();
+    }
+
+    public void makeSuspicious(int acctNum) {
+        BankAccount account = accounts.get(acctNum);
+        accounts.put(acctNum, new SuspiciousBankAccount(account));
     }
 }
