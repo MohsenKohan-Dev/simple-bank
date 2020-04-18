@@ -5,6 +5,7 @@ import dev.mohsenkohan.simplebank.accounts.decorators.SuspiciousBankAccount;
 import dev.mohsenkohan.simplebank.accounts.decorators.UnmodifiableBankIterator;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 import dev.mohsenkohan.simplebank.loans.Loan;
+import dev.mohsenkohan.simplebank.loans.authorizers.LoanAuthorizer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +44,8 @@ public class Bank implements Iterable<BankAccount> {
 
     public boolean authorizeLoan(int acctNum, int loanAmt) {
         BankAccount bankAccount = accounts.get(acctNum);
-        return bankAccount.hasEnoughCollateral(loanAmt);
+        LoanAuthorizer authorizer = LoanAuthorizer.getAuthorizer(bankAccount);
+        return authorizer.authorizeLoan(loanAmt);
     }
 
     public void setForeign(int acctNum, boolean isForeign) {
