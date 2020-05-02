@@ -9,20 +9,22 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class AccountStats {
+public class AccountStatsModel {
 
     private final Bank bank;
 
-    public AccountStats(Bank bank) {
+    public AccountStatsModel(Bank bank) {
         this.bank = bank;
     }
 
-    public void printAccounts1() {
+    public String getAccounts1() {
+        StringBuilder result = new StringBuilder();
         Iterator<BankAccount> iterator = bank.iterator();
         while (iterator.hasNext()) {
             BankAccount account = iterator.next();
-            System.out.println(account);
+            result.append(account).append("\n");
         }
+        return result.toString();
     }
 
     public int maxBalance1() {
@@ -37,10 +39,12 @@ public class AccountStats {
         return max;
     }
 
-    public void printAccounts2() {
+    public String getAccounts2() {
+        StringBuilder result = new StringBuilder();
         for (BankAccount account : bank) {
-            System.out.println(account);
+            result.append(account).append("\n");
         }
+        return result.toString();
     }
 
     public int maxBalance2() {
@@ -53,9 +57,11 @@ public class AccountStats {
         return max;
     }
 
-    public void printAccounts3() {
-        Consumer<BankAccount> action = System.out::println;
+    public String getAccounts3() {
+        StringBuilder result = new StringBuilder();
+        Consumer<BankAccount> action = account -> result.append(account).append("\n");
         bank.forEach(action);
+        return result.toString();
     }
 
     public int maxBalance3a() {
@@ -97,10 +103,12 @@ public class AccountStats {
         return visit2(new MaxBalanceVisitor());
     }
 
-    public void printAccounts4(Predicate<? super BankAccount> predicate) {
+    public String getAccounts4(Predicate<? super BankAccount> predicate) {
+        StringBuilder result = new StringBuilder();
         for (BankAccount ba : bank)
             if (predicate.test(ba))
-                System.out.println(ba);
+                result.append(ba).append("\n");
+        return result.toString();
     }
 
     public int maxBalance4(Predicate<? super BankAccount> predicate) {
@@ -115,11 +123,13 @@ public class AccountStats {
         return max;
     }
 
-    public void printAccounts5(Predicate<? super BankAccount> predicate) {
+    public String getAccounts5(Predicate<? super BankAccount> predicate) {
+        StringBuilder result = new StringBuilder();
         bank.forEach(account -> {
             if (predicate.test(account))
-                System.out.println(account);
+                result.append(account).append("\n");
         });
+        return result.toString();
     }
 
     public int maxBalance5(Predicate<? super BankAccount> predicate) {
@@ -146,10 +156,12 @@ public class AccountStats {
         return action.result();
     }
 
-    public void printAccounts6(Predicate<? super BankAccount> predicate) {
-        bank.stream()
+    public String getAccounts6(Predicate<? super BankAccount> predicate) {
+        return bank.stream()
                 .filter(predicate)
-                .forEach(System.out::println);
+                .map(account -> account.toString() + "\n")
+                .reduce(new StringBuilder(), StringBuilder::append, StringBuilder::append)
+                .toString();
     }
 
     public int maxBalance6(Predicate<? super BankAccount> predicate) {
