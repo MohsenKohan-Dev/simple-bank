@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.commands;
 
-import dev.mohsenkohan.simplebank.Bank;
+import dev.mohsenkohan.simplebank.InputController;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactories;
 import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
 
@@ -8,67 +8,47 @@ import java.util.Scanner;
 
 public enum InputCommands implements InputCommand {
 
-    QUIT("quit", (scanner, bank, current) -> {
+    QUIT("quit", (scanner, controller) -> {
         scanner.close();
-        System.out.println("Goodbye!");
-        return -1;
+        return "Goodbye!";
     }),
 
-    NEW("new", (scanner, bank, current) -> {
+    NEW("new", (scanner, controller) -> {
         printMessage();
         int type = scanner.nextInt();
-
         boolean isForeign = requestForeign(scanner);
-
-        current = bank.newAccount(type, isForeign);
-        System.out.println("Your new account number is " + current);
-
-        return current;
+        return controller.newCommand(type, isForeign);
     }),
 
-    SELECT("select", (scanner, bank, current) -> {
+    SELECT("select", (scanner, controller) -> {
         System.out.print("Enter account number: ");
-        current = scanner.nextInt();
-
-        int balance = bank.getBalance(current);
-        System.out.println("The balance of account " + current + " is " + balance);
-
-        return current;
+        int acctNum = scanner.nextInt();
+        return controller.selectCommand(acctNum);
     }),
 
-    DEPOSIT("deposit", (scanner, bank, current) -> {
+    DEPOSIT("deposit", (scanner, controller) -> {
         System.out.print("Enter deposit amount: ");
         int amt = scanner.nextInt();
-        bank.deposit(current, amt);
-        return current;
+        return controller.depositCommand(amt);
     }),
 
-    LOAN("loan", (scanner, bank, current) -> {
+    LOAN("loan", (scanner, controller) -> {
         System.out.print("Enter loan amount: ");
         int loanAmt = scanner.nextInt();
-
-        if (bank.authorizeLoan(current, loanAmt))
-            System.out.println("Your loan is approved.");
-        else
-            System.out.println("Your loan is denied.");
-
-        return current;
+        return controller.loadCommand(loanAmt);
     }),
 
-    SHOW("show", (scanner, bank, current) -> {
-        System.out.println(bank.toString());
-        return current;
+    SHOW("show", (scanner, controller) -> {
+        return controller.showCommand();
     }),
 
-    INTEREST("interest", (scanner, bank, current) -> {
-        bank.addInterest();
-        return current;
+    INTEREST("interest", (scanner, controller) -> {
+        return controller.interestCommand();
     }),
 
-    FOREIGN("foreign", (scanner, bank, current) -> {
+    FOREIGN("foreign", (scanner, controller) -> {
         boolean isForeign = requestForeign(scanner);
-        bank.setForeign(current, isForeign);
-        return current;
+        return controller.foreignCommand(isForeign);
     });
 
     private static boolean requestForeign(Scanner scanner) {
@@ -101,8 +81,8 @@ public enum InputCommands implements InputCommand {
     }
 
     @Override
-    public int execute(Scanner scanner, Bank bank, int current) {
-        return command.execute(scanner, bank, current);
+    public String execute(Scanner scanner, InputController controller) {
+        return command.execute(scanner, controller);
     }
 
     @Override

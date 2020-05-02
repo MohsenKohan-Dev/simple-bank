@@ -32,7 +32,9 @@ public class BankProgram {
         InputStream inputStream = System.in;
         Scanner scanner = new Scanner(inputStream);
 
-        BankClient client = new BankClient(scanner, bank);
+        InputController controller = new InputController(bank);
+
+        BankClient client = new BankClient(scanner, controller);
         client.run();
 
         info.saveInfo(accounts, bank.nextAcctNum());

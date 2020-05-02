@@ -1,50 +1,48 @@
 package dev.mohsenkohan.simplebank;
 
-import dev.mohsenkohan.simplebank.commands.*;
+import dev.mohsenkohan.simplebank.commands.InputCommand;
+import dev.mohsenkohan.simplebank.commands.InputCommands;
 
 import java.util.Scanner;
 
 public class BankClient {
 
-    private int current = 0;
-    private boolean done = false;
-    private Scanner scanner;
-    private Bank bank;
-    private InputCommand[] commands = InputCommands.values();
+    private final Scanner scanner;
+    private final InputController controller;
+    private final InputCommand[] commands = InputCommands.values();
 
-    public BankClient(Scanner scanner, Bank bank) {
+    public BankClient(Scanner scanner, InputController controller) {
         this.scanner = scanner;
-        this.bank = bank;
+        this.controller = controller;
     }
 
     public void run() {
         String promptMessage = constructMessage();
+        String response = "";
 
-        while (!done) {
+        while (!response.equals("Goodbye!")) {
             System.out.print(promptMessage);
             int cmdNum = scanner.nextInt();
-            processCommand(cmdNum);
+            response = processCommand(cmdNum);
+            System.out.println(response);
         }
 
         scanner.close();
     }
 
-    private void processCommand(int cmdNum) {
+    private String processCommand(int cmdNum) {
         try {
 
             InputCommand command = commands[cmdNum];
-            current = command.execute(scanner, bank, current);
-
-            if (current < 0)
-                done = true;
+            return command.execute(scanner, controller);
 
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Illegal command!\nTry again.");
+            return "Illegal command!\nTry again.";
         }
     }
 
     private String constructMessage() {
-        int last = commands.length-1;
+        int last = commands.length - 1;
 
         String result = "Enter command (";
         for (int i = 0; i < last; i++)
