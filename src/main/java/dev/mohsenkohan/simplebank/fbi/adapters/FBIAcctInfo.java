@@ -1,4 +1,4 @@
-package dev.mohsenkohan.simplebank.fbi;
+package dev.mohsenkohan.simplebank.fbi.adapters;
 
 public interface FBIAcctInfo {
 
