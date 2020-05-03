@@ -1,7 +1,9 @@
 package dev.mohsenkohan.simplebank;
 
-import dev.mohsenkohan.simplebank.accounts.*;
-import dev.mohsenkohan.simplebank.accounts.factories.AccountFactory;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.accounts.RegularChecking;
+import dev.mohsenkohan.simplebank.model.accounts.SavingsAccount;
+import dev.mohsenkohan.simplebank.model.accounts.factories.AccountFactory;
 
 import java.io.*;
 import java.nio.ByteBuffer;

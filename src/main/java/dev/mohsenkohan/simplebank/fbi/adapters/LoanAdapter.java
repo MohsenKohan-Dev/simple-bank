@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.fbi.adapters;
 
-import dev.mohsenkohan.simplebank.loans.Loan;
+import dev.mohsenkohan.simplebank.model.loans.Loan;
 
 public class LoanAdapter implements FBIAcctInfo {
 

@@ -1,17 +1,17 @@
 package dev.mohsenkohan.simplebank.gui;
 
-import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.SavedBankInfo;
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
 import dev.mohsenkohan.simplebank.gui.controllers.AccountCreationController;
 import dev.mohsenkohan.simplebank.gui.controllers.AccountInfoController;
 import dev.mohsenkohan.simplebank.gui.controllers.ShowAllAccountsController;
 import dev.mohsenkohan.simplebank.gui.views.AccountCreationView;
 import dev.mohsenkohan.simplebank.gui.views.AccountInfoView;
 import dev.mohsenkohan.simplebank.gui.views.ShowAllAccountsView;
-import dev.mohsenkohan.simplebank.observers.Auditor;
-import dev.mohsenkohan.simplebank.observers.BankEvent;
-import dev.mohsenkohan.simplebank.observers.BankObserver;
+import dev.mohsenkohan.simplebank.model.Bank;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.observers.Auditor;
+import dev.mohsenkohan.simplebank.model.observers.BankEvent;
+import dev.mohsenkohan.simplebank.model.observers.BankObserver;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

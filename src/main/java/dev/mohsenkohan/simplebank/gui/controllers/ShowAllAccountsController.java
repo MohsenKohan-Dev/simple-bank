@@ -1,9 +1,9 @@
 package dev.mohsenkohan.simplebank.gui.controllers;
 
-import dev.mohsenkohan.simplebank.Bank;
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
-import dev.mohsenkohan.simplebank.observers.BankEvent;
-import dev.mohsenkohan.simplebank.observers.BankObserver;
+import dev.mohsenkohan.simplebank.model.Bank;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.observers.BankEvent;
+import dev.mohsenkohan.simplebank.model.observers.BankObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

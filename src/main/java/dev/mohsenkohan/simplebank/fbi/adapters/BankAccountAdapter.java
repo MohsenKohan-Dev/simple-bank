@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.fbi.adapters;
 
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
 
 public class BankAccountAdapter implements FBIAcctInfo {
 

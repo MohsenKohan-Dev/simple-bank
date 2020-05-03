@@ -1,6 +1,6 @@
 package dev.mohsenkohan.simplebank.stats.visitors;
 
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
 
 public class MaxBalanceVisitor implements Visitor<BankAccount, Integer> {
 

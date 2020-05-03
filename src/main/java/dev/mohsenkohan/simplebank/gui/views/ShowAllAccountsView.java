@@ -1,7 +1,7 @@
 package dev.mohsenkohan.simplebank.gui.views;
 
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
 import dev.mohsenkohan.simplebank.gui.controllers.ShowAllAccountsController;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

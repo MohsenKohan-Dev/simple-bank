@@ -1,8 +1,11 @@
 package dev.mohsenkohan.simplebank.fbi;
 
-import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.SavedBankInfo;
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.fbi.mvc.FBIController;
+import dev.mohsenkohan.simplebank.fbi.mvc.FBIModel;
+import dev.mohsenkohan.simplebank.fbi.mvc.FBIView;
+import dev.mohsenkohan.simplebank.model.Bank;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
 
 import java.io.File;
 import java.util.Map;

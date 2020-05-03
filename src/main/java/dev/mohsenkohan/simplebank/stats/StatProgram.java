@@ -1,8 +1,11 @@
 package dev.mohsenkohan.simplebank.stats;
 
-import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.SavedBankInfo;
-import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.model.Bank;
+import dev.mohsenkohan.simplebank.model.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.stats.mvc.AccountStatsController;
+import dev.mohsenkohan.simplebank.stats.mvc.AccountStatsModel;
+import dev.mohsenkohan.simplebank.stats.mvc.AccountStatsView;
 
 import java.io.File;
 import java.util.Map;
