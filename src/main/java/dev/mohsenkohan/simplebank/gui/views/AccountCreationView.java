@@ -1,5 +1,6 @@
-package dev.mohsenkohan.simplebank.gui;
+package dev.mohsenkohan.simplebank.gui.views;
 
+import dev.mohsenkohan.simplebank.gui.controllers.AccountCreationController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

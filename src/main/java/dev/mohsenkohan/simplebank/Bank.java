@@ -109,4 +109,9 @@ public class Bank implements Iterable<BankAccount> {
         BankAccount account = accounts.get(acctNum);
         accounts.put(acctNum, new SuspiciousBankAccount(account));
     }
+
+    public boolean isForeign(int acctNum) {
+        BankAccount account = accounts.get(acctNum);
+        return account.isForeign();
+    }
 }

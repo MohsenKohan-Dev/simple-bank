@@ -1,7 +1,8 @@
-package dev.mohsenkohan.simplebank.gui;
+package dev.mohsenkohan.simplebank.gui.controllers;
 
 import dev.mohsenkohan.simplebank.Bank;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
+import dev.mohsenkohan.simplebank.gui.views.AccountCreationView;
 import dev.mohsenkohan.simplebank.observers.BankEvent;
 import dev.mohsenkohan.simplebank.observers.BankObserver;
 
@@ -15,7 +16,7 @@ public class AccountCreationController implements BankObserver {
         bank.addObserver(BankEvent.NEW, this);
     }
 
-    void setView(AccountCreationView view) {
+    public void setView(AccountCreationView view) {
         this.view = view;
     }
 
