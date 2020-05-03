@@ -10,7 +10,7 @@ public class AccountInfoController implements BankObserver {
 
     private final Bank bank;
     private AccountInfoView view;
-    private int current;
+    private int current = -1;
 
     public AccountInfoController(Bank bank) {
         this.bank = bank;
@@ -51,7 +51,7 @@ public class AccountInfoController implements BankObserver {
             view.setForeign(account.isForeign());
         } else if (event == BankEvent.DEPOSIT && account.getAcctNum() == current) {
             view.setBalance(Integer.toString(account.getBalance()));
-        } else {
+        } else if (event == BankEvent.INTEREST && current >= 0) {
             view.setBalance(Integer.toString(bank.getBalance(current)));
         }
     }

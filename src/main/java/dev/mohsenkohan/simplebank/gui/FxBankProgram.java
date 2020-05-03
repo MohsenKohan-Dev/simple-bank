@@ -5,8 +5,10 @@ import dev.mohsenkohan.simplebank.SavedBankInfo;
 import dev.mohsenkohan.simplebank.accounts.BankAccount;
 import dev.mohsenkohan.simplebank.gui.controllers.AccountCreationController;
 import dev.mohsenkohan.simplebank.gui.controllers.AccountInfoController;
+import dev.mohsenkohan.simplebank.gui.controllers.ShowAllAccountsController;
 import dev.mohsenkohan.simplebank.gui.views.AccountCreationView;
 import dev.mohsenkohan.simplebank.gui.views.AccountInfoView;
+import dev.mohsenkohan.simplebank.gui.views.ShowAllAccountsView;
 import dev.mohsenkohan.simplebank.observers.Auditor;
 import dev.mohsenkohan.simplebank.observers.BankEvent;
 import dev.mohsenkohan.simplebank.observers.BankObserver;
@@ -25,7 +27,7 @@ public class FxBankProgram extends Application {
     private SavedBankInfo info;
     private Map<Integer, BankAccount> accounts;
     private Bank bank;
-    private Pane creationPane, infoPane;
+    private Pane creationPane, infoPane, showALlPane;
 
     @Override
     public void init() throws Exception {
@@ -48,6 +50,9 @@ public class FxBankProgram extends Application {
         AccountInfoController accountInfoController = new AccountInfoController(bank);
         AccountInfoView accountInfoView = new AccountInfoView(accountInfoController);
 
+        ShowAllAccountsController showAllAccountsController = new ShowAllAccountsController(bank);
+        ShowAllAccountsView showAllAccountsView = new ShowAllAccountsView(showAllAccountsController);
+
         Border border = new Border(new BorderStroke(
                 Color.BLACK, BorderStrokeStyle.SOLID, null, null, new Insets(10)));
 
@@ -56,11 +61,14 @@ public class FxBankProgram extends Application {
 
         infoPane = accountInfoView.getRoot();
         infoPane.setBorder(border);
+
+        showALlPane = showAllAccountsView.getRoot();
+        showALlPane.setBorder(border);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        HBox root = new HBox(creationPane, infoPane);
+        HBox root = new HBox(new VBox(creationPane, showALlPane), infoPane);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
